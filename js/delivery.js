@@ -59,6 +59,31 @@ async function enviarDatosApi() {
         const estado_pedido= document.getElementById('txtEstado_pedido').value;
         const tiempo_entrega = document.getElementById('txtTiempo_entrega').value;
 
+
+        if (!nombres || !dni || !hora || !direccion || !estado_pedido || !tiempo_entrega) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Campos incompletos',
+                text: 'Por favor completa todos los campos antes de enviar los datos.',
+                confirmButtonText: 'Entendido'
+            });
+            return; // Salir de la función si hay campos vacíos
+        }
+
+        // Verificar si el nombre ya existe
+        const dniExistentes = document.querySelectorAll('#rowsCliente td:nth-child(2)');
+        const dniRepetido = [...dniExistentes].some(td => td.textContent.trim() === dni.trim());
+
+        if (dniRepetido) {
+            Swal.fire({
+                icon: 'error',
+                title: 'DNI repetido',
+                text: 'El DNI ingresado ya existe en la lista. Por favor, ingresa un dni diferente.',
+                confirmButtonText: 'Entendido'
+            });
+            return; // Salir de la función si el nombre está repetido
+        }
+
         const data = {
             "dni": dni,
             "hora": hora,

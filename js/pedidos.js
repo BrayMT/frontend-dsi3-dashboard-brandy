@@ -51,7 +51,17 @@ async function enviarDatosApi() {
         const cantidad = document.getElementById('txtCantidad').value;
         const fecha_pedido = document.getElementById('txtFecha_pedido').value;
        
-       
+        if (!nombre_pedido || !cantidad || !fecha_pedido) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Campos incompletos',
+                text: 'Por favor completa todos los campos antes de enviar los datos.',
+                confirmButtonText: 'Entendido'
+            });
+            return; // Salir de la función si hay campos vacíos
+        }
+
+
         const data = {
             "nombre_pedido": nombre_pedido,
             "cantidad": cantidad,

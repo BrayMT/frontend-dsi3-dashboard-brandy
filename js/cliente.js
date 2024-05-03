@@ -27,10 +27,13 @@ async function cargarDatosDelAPI() {
             `;
         });
         tablaBody.innerHTML = rows; 
-    } catch (error) {
-        console.error('Error al cargar los datos:', error);
-    }
-}
+          // Inicializar DataTable después de cargar los datos
+          $('#dataTable').DataTable();
+        } catch (error) {
+          console.error('Error al cargar datos:', error);
+        }
+      }
+      cargarDatosDelAPI();
 
 async function buscarParaEditar(id){
     try {

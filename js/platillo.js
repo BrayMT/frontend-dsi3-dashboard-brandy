@@ -52,9 +52,19 @@ async function enviarDatosApi() {
     try {
         const id = document.getElementById('txtId').value;
         const nombre_platillo = document.getElementById('txtNombre_platillo').value;
-        const  descripcion= document.getElementById('txtDescripcion').value;
+        const descripcion= document.getElementById('txtDescripcion').value;
         const categoria = document.getElementById('txtCategoria').value;
         const precio = document.getElementById('txtPrecio').value;
+
+        if (!nombre_platillo || !descripcion || !categoria || !precio) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Campos incompletos',
+                text: 'Por favor completa todos los campos antes de enviar los datos.',
+                confirmButtonText: 'Entendido'
+            });
+            return; // Salir de la función si hay campos vacíos
+        }
         
         const data = {
             "nombre_platillo":nombre_platillo,
