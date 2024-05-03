@@ -1,0 +1,111 @@
+<div class="container mt-3">
+  <!-- Botones -->
+  <h4>Lista de Pedidos</h4>
+  <div>
+    <button type="button" id="btnAgregarPedidos" class="btn btn-primary" data-bs-toggle="modal"
+      data-bs-target="#modalFormulario">Agregar pedidos</button>
+
+
+  </div>
+  <!-- tabla -->
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre_pedido</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Fecha_pedido</th>
+        <th scope="col"></th>
+
+      </tr>
+    </thead>
+    <tbody id="rowsPedidos">
+      <!-- aca se va a llenar los registros del arreglo -->
+    </tbody>
+  </table>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalFormulario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Pedidos</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- class="form-label":para letra, for="txtCosto" para numero -->
+
+        <form id="frmPedidos">
+          <!-- id -->
+          <div class="mb-1">
+            <label class="form-label">ID</label>
+            <input type="text" class="form-control" id="txtId" placeholder="ID" value="Autogenerado" readonly>
+          </div>
+          <!-- nombre_pedido -->
+          <div class="mb-1">
+            <label class="form-label">Nombre_pedido</label>
+            <input type=" text" class="form-control" id="txtNombre_pedido" placeholder="Ingrese el nombre de pedido">
+          </div>
+          <!-- cantidad -->
+          <div class="mb-1">
+            <label class="form-label">Cantidad</label>
+            <input type="text" class="form-control" id="txtCantidad" placeholder="Ingresa la cantidad">
+          </div>
+          <!-- fecha_pedido-->
+          <div class="mb-1">
+            <label class="form-label">Fecha_pedido</label>
+            <input type="text" class="form-control" id="txtFecha_pedido" placeholder="Ingresa su fecha">
+          </div>
+    
+      <div class="modal-footer">
+        <button id="btnGrabar" onclick="enviarDatosApi()" type="button" class="btn btn-success"
+          data-bs-dismiss="modal">Grabar</button>
+        <button id="btnCerrar" type="button" class="btn btn-danger" data-bs-dismiss="modal"
+          onclick="formReset()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal de Confirmación -->
+<div class="modal fade" id="modalConfirmacion" tabindex="-1" aria-labelledby="modalConfirmacionLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalConfirmacionLabel">Confirmación de Eliminación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Estás seguro de que deseas eliminar este elemento?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="btnConfirmarEliminar"
+          data-bs-dismiss="modal">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- fin Modal -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.all.min.js"
+  integrity="sha256-O11zcGEd6w4SQFlm8i/Uk5VAB+EhNNmynVLznwS6TJ4=" crossorigin="anonymous"></script>
+<script src="../js/jquery.js"></script>
+ <!-- Page level plugins -->
+ <script src="../../vendor/datatables/jquery.dataTables.min.js"></script>
+ <script src="../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+ <!-- Page level custom scripts -->
+ <script src="js/demo/datatables-demo.js"></script>
+
+<script src="../../js/pedidos.js"></script>
