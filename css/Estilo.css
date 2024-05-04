@@ -1,0 +1,10 @@
+.error-message {
+    background-color: #f8d7da; /* Color de fondo rojo claro */
+    color: #5d1b22; /* Color de texto rojo oscuro */
+    border: 1px solid #f5c6cb; /* Borde rojo claro */
+    padding: 10px; /* Espaciado interno */
+    max-width: 300px; /* Ancho máximo */
+    font-size: 12px; /* Tamaño de fuente */
+    width: auto; /* Ancho automático (ajustado según el contenido) */
+    height: auto; /* Altura automática (ajustada según el contenido) */
+}

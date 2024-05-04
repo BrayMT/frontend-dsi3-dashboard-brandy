@@ -51,6 +51,26 @@ async function buscarParaEditar(id){
 
     }
 }
+//ESTO AGREGUE
+function mostrarMensajeError(mensaje, campoId) {
+    const errorDiv = document.createElement('div');
+    errorDiv.classList.add('alert', 'alert-danger');
+    errorDiv.textContent = mensaje;
+    errorDiv.classList.add('error-message')
+
+    const campo = document.getElementById(campoId);
+    campo.insertAdjacentElement('afterend', errorDiv); 
+
+    setTimeout(() => {
+        errorDiv.remove();
+    }, 3000);
+}
+
+function contieneNumerosOCaracteresNoPermitidos(valor) {
+    const regex = /^[a-zA-Z\s]+$/; // Expresión regular para permitir solo letras y espacios
+    return !regex.test(valor.trim());
+}
+//AQUI TERMINA
 
 async function enviarDatosApi() {
     try {
@@ -61,30 +81,55 @@ async function enviarDatosApi() {
         const direccion = document.getElementById('txtDireccion').value;
         const ciudad = document.getElementById('txtCiudad').value;
 
-        // Verificar si algún campo está vacío
-        if (!nombres || !dni || !apellidos || !direccion || !ciudad) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Campos incompletos',
-                text: 'Por favor completa todos los campos antes de enviar los datos.',
-                confirmButtonText: 'Entendido'
-            });
-            return; // Salir de la función si hay campos vacíos
-        }
+        //ESTO AGREGUE
+        const nombresRegex = /^[a-zA-Z\s]+$/;
+        const dniRegex = /^[0-9]+$/;
+        const maxLongitudDNI = 8; // Máximo de 8 dígitos para el DNI
+        const minLongitudDNI = 8; // Mínimo de 8 dígitos para el DNI
 
-        // Verificar si el nombre ya existe
-        const dniExistentes = document.querySelectorAll('#rowsCliente td:nth-child(2)');
+        const campos = [
+            { valor: nombres, id: 'txtNombres', mensaje: 'Por favor, complete el campo "Nombres".' },
+            { valor: dni, id: 'txtDni', mensaje: 'Por favor, complete el campo "DNI".' },
+            { valor: apellidos, id: 'txtApellidos', mensaje: 'Por favor, complete el campo "Apellidos".' },
+            { valor: direccion, id: 'txtDireccion', mensaje: 'Por favor, complete el campo "Dirección".' },
+            { valor: ciudad, id: 'txtCiudad', mensaje: 'Por favor, complete el campo "Ciudad".' }
+        ];
+
+        // Verificar DNI repetido
+        const dniExistentes = document.querySelectorAll('#rowsCliente td:nth-child(3)');
         const dniRepetido = [...dniExistentes].some(td => td.textContent.trim() === dni.trim());
 
         if (dniRepetido) {
             Swal.fire({
                 icon: 'error',
                 title: 'DNI repetido',
-                text: 'El DNI ingresado ya existe en la lista. Por favor, ingresa un dni diferente.',
+                text: 'El DNI ingresado ya existe en la lista. Por favor, ingresa un DNI diferente.',
                 confirmButtonText: 'Entendido'
             });
-            return; // Salir de la función si el nombre está repetido
+            return; // Salir de la función si el DNI está repetido
         }
+
+        const camposVacios = campos.filter(field => !field.valor);
+        if (camposVacios.length > 0) {
+            camposVacios.forEach(field => {
+                mostrarMensajeError(field.mensaje, field.id);
+            });
+            return;
+        }
+
+        // Validación del nombre
+        if (!nombresRegex.test(nombres)) {
+            mostrarMensajeError('El nombre solo puede contener texto.', 'txtNombres');
+            return;
+        }
+
+        // Validación del DNI (solo números y máximo de 8 y minimo dígitos)
+        if (!dniRegex.test(dni) || dni.length < minLongitudDNI || dni.length > maxLongitudDNI) {
+            mostrarMensajeError(`El DNI solo puede contener números y debe tener entre ${minLongitudDNI} y ${maxLongitudDNI} dígitos.`, 'txtDni');
+            return;
+        //AQUI TERMINA
+       }
+       
 
         const data = {
             "nombres": nombres,
@@ -124,6 +169,10 @@ async function enviarDatosApi() {
     } catch (error) {
         console.error('Error al enviar los datos a la API:', error);
     }
+}
+//MODIFIQUE EL BUTON PARA QUE PRIMERO VALIDE LOS CAMPUS
+function validarCompus() {
+    enviarDatosApi(); // Llamar a enviarDatosApi 
 }
 
 async function eliminarDato(id) {
