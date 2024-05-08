@@ -82,18 +82,10 @@ async function enviarDatosApi() {
         const ciudad = document.getElementById('txtCiudad').value;
 
         //ESTO AGREGUE
-        const nombresRegex = /^[a-zA-Z\s]+$/;
         const dniRegex = /^[0-9]+$/;
         const maxLongitudDNI = 8; // Máximo de 8 dígitos para el DNI
         const minLongitudDNI = 8; // Mínimo de 8 dígitos para el DNI
 
-        const campos = [
-            { valor: nombres, id: 'txtNombres', mensaje: 'Por favor, complete el campo "Nombres".' },
-            { valor: dni, id: 'txtDni', mensaje: 'Por favor, complete el campo "DNI".' },
-            { valor: apellidos, id: 'txtApellidos', mensaje: 'Por favor, complete el campo "Apellidos".' },
-            { valor: direccion, id: 'txtDireccion', mensaje: 'Por favor, complete el campo "Dirección".' },
-            { valor: ciudad, id: 'txtCiudad', mensaje: 'Por favor, complete el campo "Ciudad".' }
-        ];
 
         // Verificar DNI repetido
         const dniExistentes = document.querySelectorAll('#rowsCliente td:nth-child(3)');
@@ -109,26 +101,12 @@ async function enviarDatosApi() {
             return; // Salir de la función si el DNI está repetido
         }
 
-        const camposVacios = campos.filter(field => !field.valor);
-        if (camposVacios.length > 0) {
-            camposVacios.forEach(field => {
-                mostrarMensajeError(field.mensaje, field.id);
-            });
-            return;
-        }
-
-        // Validación del nombre
-        if (!nombresRegex.test(nombres)) {
-            mostrarMensajeError('El nombre solo puede contener texto.', 'txtNombres');
-            return;
-        }
-
         // Validación del DNI (solo números y máximo de 8 y minimo dígitos)
         if (!dniRegex.test(dni) || dni.length < minLongitudDNI || dni.length > maxLongitudDNI) {
             mostrarMensajeError(`El DNI solo puede contener números y debe tener entre ${minLongitudDNI} y ${maxLongitudDNI} dígitos.`, 'txtDni');
             return;
-        //AQUI TERMINA
        }
+       //AQUI TERMINA
        
 
         const data = {
