@@ -50,6 +50,27 @@ async function buscarParaEditar(id){
     }
 }
 
+//ESTO AGREGUE
+function mostrarMensajeError(mensaje, campoId) {
+    const errorDiv = document.createElement('div');
+    errorDiv.classList.add('alert', 'alert-danger');
+    errorDiv.textContent = mensaje;
+    errorDiv.classList.add('error-message')
+
+    const campo = document.getElementById(campoId);
+    campo.insertAdjacentElement('afterend', errorDiv); 
+
+    setTimeout(() => {
+        errorDiv.remove();
+    }, 3000);
+}
+
+function contieneNumerosOCaracteresNoPermitidos(valor) {
+    const regex = /^[a-zA-Z\s]+$/; // Expresión regular para permitir solo letras y espacios
+    return !regex.test(valor.trim());
+}
+//AQUI TERMINA
+
 async function enviarDatosApi() {
     try {
         const id = document.getElementById('txtId').value;
@@ -60,29 +81,32 @@ async function enviarDatosApi() {
         const tiempo_entrega = document.getElementById('txtTiempo_entrega').value;
 
 
-        if (!nombres || !dni || !hora || !direccion || !estado_pedido || !tiempo_entrega) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Campos incompletos',
-                text: 'Por favor completa todos los campos antes de enviar los datos.',
-                confirmButtonText: 'Entendido'
-            });
-            return; // Salir de la función si hay campos vacíos
-        }
+                //ESTO AGREGUE
+                const dniRegex = /^[0-9]+$/;
+                const maxLongitudDNI = 8; // Máximo de 8 dígitos para el DNI
+                const minLongitudDNI = 8; // Mínimo de 8 dígitos para el DNI
+        
+        
+                // Verificar DNI repetido
+                const dniExistentes = document.querySelectorAll('#rowsDelivery td:nth-child(3)');
+                const dniRepetido = [...dniExistentes].some(td => td.textContent.trim() === dni.trim());
+        
+                if (dniRepetido) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'DNI repetido',
+                        text: 'El DNI ingresado ya existe en la lista. Por favor, ingresa un DNI diferente.',
+                        confirmButtonText: 'Entendido'
+                    });
+                    return; // Salir de la función si el DNI está repetido
+                }
+        
+                // Validación del DNI (solo números y máximo de 8 y minimo dígitos)
+                if (!dniRegex.test(dni) || dni.length < minLongitudDNI || dni.length > maxLongitudDNI) {
+                    mostrarMensajeError(`El DNI solo puede contener números y debe tener entre ${minLongitudDNI} y ${maxLongitudDNI} dígitos.`, 'txtDni');
+                    return;
+               }
 
-        // Verificar si el nombre ya existe
-        const dniExistentes = document.querySelectorAll('#rowsCliente td:nth-child(2)');
-        const dniRepetido = [...dniExistentes].some(td => td.textContent.trim() === dni.trim());
-
-        if (dniRepetido) {
-            Swal.fire({
-                icon: 'error',
-                title: 'DNI repetido',
-                text: 'El DNI ingresado ya existe en la lista. Por favor, ingresa un dni diferente.',
-                confirmButtonText: 'Entendido'
-            });
-            return; // Salir de la función si el nombre está repetido
-        }
 
         const data = {
             "dni": dni,

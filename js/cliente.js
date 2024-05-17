@@ -15,10 +15,9 @@ async function cargarDatosDelAPI() {
                 <tr>
                     <td>${dato.id}</td>
                     <td>${dato.nombres}</td>
-                    <td>${dato.dni}</td>
                     <td>${dato.apellidos}</td>
+                    <td>${dato.dni}</td>
                     <td>${dato.direccion}</td>
-                    <td>${dato.ciudad}</td>
                     <td>
                         <button class='btn btn-success ms-2' onclick='buscarParaEditar(${dato.id})' data-bs-toggle='modal' data-bs-target='#modalFormulario'>Editar</button>
                         <button class='btn btn-danger' onclick='eliminarDato(${dato.id})'>Eliminar</button>
@@ -41,10 +40,9 @@ async function buscarParaEditar(id){
         const dato = await response.json();
         document.getElementById('txtId').value = dato.id;
         document.getElementById('txtNombres').value = dato.nombres;
-        document.getElementById('txtDni').value = dato.dni;
         document.getElementById('txtApellidos').value = dato.apellidos;
+        document.getElementById('txtDni').value = dato.dni;
         document.getElementById('txtDireccion').value = dato.direccion;
-        document.getElementById('txtCiudad').value = dato.ciudad;
 
 
     } catch (error) {
@@ -76,10 +74,9 @@ async function enviarDatosApi() {
     try {
         const id = document.getElementById('txtId').value;
         const nombres = document.getElementById('txtNombres').value;
-        const dni = document.getElementById('txtDni').value;
         const apellidos = document.getElementById('txtApellidos').value;
+        const dni = document.getElementById('txtDni').value;
         const direccion = document.getElementById('txtDireccion').value;
-        const ciudad = document.getElementById('txtCiudad').value;
 
         //ESTO AGREGUE
         const dniRegex = /^[0-9]+$/;
@@ -91,7 +88,7 @@ async function enviarDatosApi() {
         const dniExistentes = document.querySelectorAll('#rowsCliente td:nth-child(3)');
         const dniRepetido = [...dniExistentes].some(td => td.textContent.trim() === dni.trim());
 
-        if (dniRepetido) {
+        if (dniRepetido ) {
             Swal.fire({
                 icon: 'error',
                 title: 'DNI repetido',
@@ -111,10 +108,9 @@ async function enviarDatosApi() {
 
         const data = {
             "nombres": nombres,
-            "dni": dni,
             "apellidos": apellidos,
+            "dni": dni,
             "direccion": direccion,
-            "ciudad": ciudad
         };
 
         if (!isNaN(id)) {
@@ -151,6 +147,7 @@ async function enviarDatosApi() {
 //MODIFIQUE EL BUTON PARA QUE PRIMERO VALIDE LOS CAMPUS
 function validarCompus() {
     enviarDatosApi(); // Llamar a enviarDatosApi 
+    
 }
 
 async function eliminarDato(id) {

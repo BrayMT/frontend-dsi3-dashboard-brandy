@@ -8,3 +8,20 @@
     width: auto; /* Ancho automático (ajustado según el contenido) */
     height: auto; /* Altura automática (ajustada según el contenido) */
 }
+
+.Fondo {
+    background-image: url('../img/Restaurante-15.jpg'); 
+    background-repeat: no-repeat;
+    background-size: cover; /* O usa 'contain' según sea necesario */
+    background-position: center; /* Alinea la imagen en el centro */
+}
+
+.texto{
+    font-size: 36px; /* Cambia este valor al tamaño que desees */
+    color: rgb(219, 224, 239);
+}
+
+.custom-control-label{
+    font-size: 14px; /* Cambia este valor al tamaño que desees */
+    color: rgb(219, 224, 239)   ;
+}
