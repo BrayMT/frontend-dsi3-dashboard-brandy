@@ -2,6 +2,28 @@ window.onload = () => {
     cargarDatosDelAPI();
 };
 
+// ESTA FUNCION HABILITA EL BUTTON
+function validarCampos() {
+    const nombre_platillo = document.getElementById('txtNombre_platillo').value;
+    const descripcion = document.getElementById('txtDescripcion').value;
+    const categoria = document.getElementById('txtCategoria').value;
+    const precio = document.getElementById('txtPrecio').value;
+    const btnGrabar = document.getElementById('btnGrabar');
+
+    if (nombre_platillo.trim() !== "" && descripcion.trim() !== "" && categoria.trim() !== "" && precio.trim() !== "") {
+        btnGrabar.disabled = false;
+    } else {
+        btnGrabar.disabled = true;
+    }
+}
+
+// Modifica los campos de entrada para llamar a validarCampos() en cada cambio
+document.getElementById('txtNombre_platillo').oninput = validarCampos;
+document.getElementById('txtDescripcion').oninput = validarCampos;
+document.getElementById('txtCategoria').oninput = validarCampos;
+document.getElementById('txtPrecio').oninput = validarCampos;
+
+
 //cargar los datos desde la api
 async function cargarDatosDelAPI() {
     try {

@@ -48,29 +48,29 @@
           <!-- nombre_platillo -->
           <div class="mb-1">
             <label class="form-label">Nombre_platillo</label>
-            <input type=" text" class="form-control" id="txtNombre_platillo" placeholder="Ingrese el nombre de platillo">
+            <input type=" text" class="form-control" id="txtNombre_platillo" oninput="validarCampos()" placeholder="Ingrese el nombre de platillo">
           </div>
            <!-- descripcion -->
            <div class="mb-1">
             <label class="form-label">descripcion</label>
-            <input type="text" class="form-control" id="txtDescripcion" placeholder="Ingrese descripcion">
+            <input type="text" class="form-control" id="txtDescripcion" oninput="validarCampos()" placeholder="Ingrese descripcion">
           </div>
           <!-- categoria -->
           <div class="mb-1">
             <label class="form-label">Categoria</label>
-            <input type="text" class="form-control" id="txtCategoria" placeholder="Ingrese su categoria">
+            <input type="text" class="form-control" id="txtCategoria" oninput="validarCampos()" placeholder="Ingrese su categoria">
           </div>
       
           <!-- precio -->
           <div class="mb-1">
             <label class="form-label">Precio</label>
-            <input type="text" class="form-control" id="txtPrecio" placeholder="Ingresa el precio">
+            <input type="text" class="form-control" id="txtPrecio" oninput="validarCampos()" placeholder="Ingresa el precio">
           </div>
       
 
       <div class="modal-footer">
         <button id="btnGrabar" onclick="enviarDatosApi()" type="button" class="btn btn-success"
-          data-bs-dismiss="modal">Grabar</button>
+          data-bs-dismiss="modal" disabled>Grabar</button>
         <button id="btnCerrar" type="button" class="btn btn-danger" data-bs-dismiss="modal"
           onclick="formReset()">Cerrar</button>
       </div>

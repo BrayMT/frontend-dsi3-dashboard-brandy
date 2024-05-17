@@ -2,6 +2,25 @@ window.onload = () => {
     cargarDatosDelAPI();
 };
 
+function validarCampos() {
+    const nombre_pedido = document.getElementById('txtNombre_pedido').value;
+    const cantidad = document.getElementById('txtCantidad').value;
+    const fecha_pedido = document.getElementById('txtFecha_pedido').value;
+    const btnGrabar = document.getElementById('btnGrabar');
+
+    if (nombre_pedido.trim() !== "" && cantidad.trim() !== "" && fecha_pedido.trim() !== "") {
+        btnGrabar.disabled = false;
+    } else {
+        btnGrabar.disabled = true;
+    }
+}
+
+// Modifica los campos de entrada para llamar a validarCampos() en cada cambio
+document.getElementById('txtNombre_pedido').oninput = validarCampos;
+document.getElementById('txtCantidad').oninput = validarCampos;
+document.getElementById('txtFecha_pedido').oninput = validarCampos;
+
+
 //cargar los datos desde la api
 async function cargarDatosDelAPI() {
     try {

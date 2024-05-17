@@ -48,26 +48,26 @@
           <!-- nombre -->
           <div class="mb-1">
             <label class="form-label">Nombres</label>
-            <input type=" text" class="form-control" id="txtNombres" placeholder="Ingrese el nombre del cliente">
+            <input type=" text" class="form-control" id="txtNombres" oninput="validarCampos()" placeholder="Ingrese el nombre del cliente">
           </div>
           <!-- apellidos -->
           <div class="mb-1">
             <label class="form-label">Apellidos</label>
-            <input type="text" class="form-control" id="txtApellidos" placeholder="Ingrese el apellido del cliente">
+            <input type="text" class="form-control" id="txtApellidos" oninput="validarCampos()" placeholder="Ingrese el apellido del cliente">
           </div>
           <!-- Dni -->
           <div class="mb-1">
             <label class="form-label">Dni</label>
-            <input type="text" class="form-control" id="txtDni" placeholder="Ingrese su dni">
+            <input type="text" class="form-control" id="txtDni" oninput="validarCampos()"  placeholder="Ingrese su dni">
           </div>
           <!-- Direccion -->
           <div class="mb-1">
             <label class="form-label">Direccion</label>
-            <input type="text" class="form-control" id="txtDireccion" placeholder="Ingrese la Direccion">
+            <input type="text" class="form-control" id="txtDireccion" oninput="validarCampos()" placeholder="Ingrese la Direccion">
           </div>
 
       <div class="modal-footer">
-        <button id="btnGrabar" onclick="validarCompus()" type="button" class="btn btn-success">Grabar</button>
+        <button id="btnGrabar" onclick="validarCompus()" type="button" class="btn btn-success" disabled>Grabar</button>
         <button id="btnCerrar" type="button" class="btn btn-danger" data-bs-dismiss="modal"
           onclick="formReset()">Cerrar</button>
       </div>

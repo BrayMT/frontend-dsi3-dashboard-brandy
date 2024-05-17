@@ -2,6 +2,28 @@ window.onload = () => {
     cargarDatosDelAPI();
 };
 
+// ESTA FUNCION HABILITA EL BUTTON
+function validarCampos() {
+    const nombres = document.getElementById('txtNombres').value;
+    const apellidos = document.getElementById('txtApellidos').value;
+    const dni = document.getElementById('txtDni').value;
+    const direccion = document.getElementById('txtDireccion').value;
+    const btnGrabar = document.getElementById('btnGrabar');
+
+    if (nombres.trim() !== "" && apellidos.trim() !== "" && dni.trim() !== "" && direccion.trim() !== "") {
+        btnGrabar.disabled = false;
+    } else {
+        btnGrabar.disabled = true;
+    }
+}
+
+// Modifica los campos de entrada para llamar a validarCampos() en cada cambio
+document.getElementById('txtNombres').oninput = validarCampos;
+document.getElementById('txtApellidos').oninput = validarCampos;
+document.getElementById('txtDni').oninput = validarCampos;
+document.getElementById('txtDireccion').oninput = validarCampos;
+
+
 //cargar los datos desde la api
 async function cargarDatosDelAPI() {
     try {

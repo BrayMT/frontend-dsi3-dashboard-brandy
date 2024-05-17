@@ -47,22 +47,22 @@
           <!-- nombre_pedido -->
           <div class="mb-1">
             <label class="form-label">Nombre_pedido</label>
-            <input type=" text" class="form-control" id="txtNombre_pedido" placeholder="Ingrese el nombre de pedido">
+            <input type=" text" class="form-control" id="txtNombre_pedido" oninput="validarCampos()" placeholder="Ingrese el nombre de pedido">
           </div>
           <!-- cantidad -->
           <div class="mb-1">
             <label class="form-label">Cantidad</label>
-            <input type="text" class="form-control" id="txtCantidad" placeholder="Ingresa la cantidad">
+            <input type="text" class="form-control" id="txtCantidad" oninput="validarCampos()" placeholder="Ingresa la cantidad">
           </div>
           <!-- fecha_pedido-->
           <div class="mb-1">
             <label class="form-label">Fecha_pedido</label>
-            <input type="text" class="form-control" id="txtFecha_pedido" placeholder="Ingresa su fecha">
+            <input type="text" class="form-control" id="txtFecha_pedido" oninput="validarCampos()" placeholder="Ingresa su fecha">
           </div>
     
       <div class="modal-footer">
         <button id="btnGrabar" onclick="enviarDatosApi()" type="button" class="btn btn-success"
-          data-bs-dismiss="modal">Grabar</button>
+          data-bs-dismiss="modal" disabled>Grabar</button>
         <button id="btnCerrar" type="button" class="btn btn-danger" data-bs-dismiss="modal"
           onclick="formReset()">Cerrar</button>
       </div>

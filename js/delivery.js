@@ -1,6 +1,28 @@
 vwindow.onload = () => {
     cargarDatosDelAPI();
 };
+// ESTA FUNCION HABILITA EL BUTTON
+function validarCampos() {
+    const dni = document.getElementById('txtDni').value;
+    const hora = document.getElementById('txtHora').value;
+    const direccion = document.getElementById('txtDireccion').value;
+    const estado_pedido = document.getElementById('txtEstado_pedido').value;
+    const tiempo_entrega = document.getElementById('txtTiempo_entrega').value;
+    const btnGrabar = document.getElementById('btnGrabar');
+
+    if (dni.trim() !== "" && hora.trim() !== "" && direccion.trim() !== "" && estado_pedido.trim() !== "" && tiempo_entrega.trim() !== "") {
+        btnGrabar.disabled = false;
+    } else {
+        btnGrabar.disabled = true;
+    }
+}
+
+// Modifica los campos de entrada para llamar a validarCampos() en cada cambio
+document.getElementById('txtDni').oninput = validarCampos;
+document.getElementById('txtHora').oninput = validarCampos;
+document.getElementById('txtDireccion').oninput = validarCampos;
+document.getElementById('txtEstado_pedido').oninput = validarCampos;
+document.getElementById('txtTiempo_entrega').oninput = validarCampos;
 
 //cargar los datos desde la api
 async function cargarDatosDelAPI() {
