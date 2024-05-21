@@ -1,28 +1,35 @@
-vwindow.onload = () => {
-    cargarDatosDelAPI();
+window.onload = async () => {
+    await cargarDatosDelAPI();
 };
+
 // ESTA FUNCION HABILITA EL BUTTON
 function validarCampos() {
-    const dni = document.getElementById('txtDni').value;
     const hora = document.getElementById('txtHora').value;
     const direccion = document.getElementById('txtDireccion').value;
     const estado_pedido = document.getElementById('txtEstado_pedido').value;
     const tiempo_entrega = document.getElementById('txtTiempo_entrega').value;
     const btnGrabar = document.getElementById('btnGrabar');
 
-    if (dni.trim() !== "" && hora.trim() !== "" && direccion.trim() !== "" && estado_pedido.trim() !== "" && tiempo_entrega.trim() !== "") {
+    const Caracteres_permitidos = (valor) => {
+        const regex = /^[a-zA-Z\s]+$/; // Allow only letters and spaces
+        return !regex.test(valor.trim());   
+    };
+
+    if (hora.trim() !== "" && direccion.trim() !== "" && estado_pedido.trim() !== "" && tiempo_entrega.trim() &&
+        !Caracteres_permitidos(hora) && !Caracteres_permitidos(direccion) &&
+        !Caracteres_permitidos(estado_pedido) && !Caracteres_permitidos(tiempo_entrega)) {
         btnGrabar.disabled = false;
     } else {
         btnGrabar.disabled = true;
     }
 }
+document.getElementById('txtHora').addEventListener('input', validarCampos);
+document.getElementById('txtDireccion').addEventListener('input', validarCampos);
+document.getElementById('txtEstado_pedido').addEventListener('input', validarCampos);
+document.getElementById('txtTiempo_entrega').addEventListener('input', validarCampos);
+document.getElementById('btnGrabar').addEventListener('click', function() {
 
-// Modifica los campos de entrada para llamar a validarCampos() en cada cambio
-document.getElementById('txtDni').oninput = validarCampos;
-document.getElementById('txtHora').oninput = validarCampos;
-document.getElementById('txtDireccion').oninput = validarCampos;
-document.getElementById('txtEstado_pedido').oninput = validarCampos;
-document.getElementById('txtTiempo_entrega').oninput = validarCampos;
+});
 
 //cargar los datos desde la api
 async function cargarDatosDelAPI() {
@@ -102,32 +109,31 @@ async function enviarDatosApi() {
         const estado_pedido= document.getElementById('txtEstado_pedido').value;
         const tiempo_entrega = document.getElementById('txtTiempo_entrega').value;
 
+        // Verificar DNI repetido, ignorando el DNI del cliente actual al editar
+        const dniExistentes = document.querySelectorAll('#rowsCliente td:nth-child(4)'); // Cambia al cuarto td que corresponde al DNI
+        const dniRepetido = [...dniExistentes].some(td => td.textContent.trim() === dni.trim() && td.parentElement.firstElementChild.textContent.trim() !== id.trim());
+        
+        //ESTO AGREGUE
+        const dniRegex = /^[0-9]+$/;
+        const maxLongitudDNI = 8; // Máximo de 8 dígitos para el DNI
+        const minLongitudDNI = 8; // Mínimo de 8 dígitos para el DNI
 
-                //ESTO AGREGUE
-                const dniRegex = /^[0-9]+$/;
-                const maxLongitudDNI = 8; // Máximo de 8 dígitos para el DNI
-                const minLongitudDNI = 8; // Mínimo de 8 dígitos para el DNI
-        
-        
-                // Verificar DNI repetido
-                const dniExistentes = document.querySelectorAll('#rowsDelivery td:nth-child(3)');
-                const dniRepetido = [...dniExistentes].some(td => td.textContent.trim() === dni.trim());
-        
-                if (dniRepetido) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'DNI repetido',
-                        text: 'El DNI ingresado ya existe en la lista. Por favor, ingresa un DNI diferente.',
-                        confirmButtonText: 'Entendido'
-                    });
-                    return; // Salir de la función si el DNI está repetido
-                }
-        
-                // Validación del DNI (solo números y máximo de 8 y minimo dígitos)
-                if (!dniRegex.test(dni) || dni.length < minLongitudDNI || dni.length > maxLongitudDNI) {
-                    mostrarMensajeError(`El DNI solo puede contener números y debe tener entre ${minLongitudDNI} y ${maxLongitudDNI} dígitos.`, 'txtDni');
-                    return;
-               }
+        if (dniRepetido ) {
+            Swal.fire({
+                icon: 'error',
+                title: 'DNI repetido',
+                text: 'El DNI ingresado ya existe en la lista. Por favor, ingresa un DNI diferente.',
+                confirmButtonText: 'Entendido'
+            });
+            return; // Salir de la función si el DNI está repetido
+        }
+
+        // Validación del DNI (solo números y máximo de 8 y minimo dígitos)
+        if (!dniRegex.test(dni) || dni.length < minLongitudDNI || dni.length > maxLongitudDNI) {
+            mostrarMensajeError(`El DNI solo puede contener números y debe tener entre ${minLongitudDNI} y ${maxLongitudDNI} dígitos.`, 'txtDni');
+            return;
+       }
+       //AQUI TERMINA
 
 
         const data = {
@@ -162,6 +168,12 @@ async function enviarDatosApi() {
                 showConfirmButton: false,
                 timer: 1500
             });
+
+            btnGrabar.disabled = true;
+
+            const modal = document.getElementById('modalFormulario');
+            const modalInstance = bootstrap.Modal.getInstance(modal);
+            modalInstance.hide(); // Cerrar el modal
         } else {
             console.error('Error al enviar los datos a la API:', response.statusText);
         }

@@ -1,27 +1,34 @@
-window.onload = () => {
-    cargarDatosDelAPI();
+window.onload = async () => {
+    await cargarDatosDelAPI();
 };
 
 // ESTA FUNCION HABILITA EL BUTTON
 function validarCampos() {
     const nombres = document.getElementById('txtNombres').value;
     const apellidos = document.getElementById('txtApellidos').value;
-    const dni = document.getElementById('txtDni').value;
     const direccion = document.getElementById('txtDireccion').value;
     const btnGrabar = document.getElementById('btnGrabar');
 
-    if (nombres.trim() !== "" && apellidos.trim() !== "" && dni.trim() !== "" && direccion.trim() !== "") {
+    const Caracteres_permitidos = (valor) => {
+        const regex = /^[a-zA-Z\s]+$/; // Allow only letters and spaces
+        return !regex.test(valor.trim());   
+    };
+
+    if (nombres.trim() !== "" && apellidos.trim() !== "" && direccion.trim() !== "" &&
+        !Caracteres_permitidos(nombres) && !Caracteres_permitidos(apellidos) &&
+        !Caracteres_permitidos(direccion)) {
         btnGrabar.disabled = false;
     } else {
         btnGrabar.disabled = true;
     }
 }
 
-// Modifica los campos de entrada para llamar a validarCampos() en cada cambio
-document.getElementById('txtNombres').oninput = validarCampos;
-document.getElementById('txtApellidos').oninput = validarCampos;
-document.getElementById('txtDni').oninput = validarCampos;
-document.getElementById('txtDireccion').oninput = validarCampos;
+document.getElementById('txtNombres').addEventListener('input', validarCampos);
+document.getElementById('txtApellidos').addEventListener('input', validarCampos);
+document.getElementById('txtDireccion').addEventListener('input', validarCampos);
+document.getElementById('btnGrabar').addEventListener('click', function() {
+
+});
 
 
 //cargar los datos desde la api
@@ -48,14 +55,13 @@ async function cargarDatosDelAPI() {
             `;
         });
         tablaBody.innerHTML = rows; 
+
+        inicializarDataTableAsync();
           // Inicializar DataTable después de cargar los datos
-          $('#dataTable').DataTable();
         } catch (error) {
           console.error('Error al cargar datos:', error);
         }
       }
-      cargarDatosDelAPI();
-
 async function buscarParaEditar(id){
     try {
         const response = await fetch('http://localhost:8081/cruddsi3/api/v1/cliente/'+id);
@@ -100,15 +106,14 @@ async function enviarDatosApi() {
         const dni = document.getElementById('txtDni').value;
         const direccion = document.getElementById('txtDireccion').value;
 
+        // Verificar DNI repetido, ignorando el DNI del cliente actual al editar
+        const dniExistentes = document.querySelectorAll('#rowsCliente td:nth-child(4)'); // Cambia al cuarto td que corresponde al DNI
+        const dniRepetido = [...dniExistentes].some(td => td.textContent.trim() === dni.trim() && td.parentElement.firstElementChild.textContent.trim() !== id.trim());
+        
         //ESTO AGREGUE
         const dniRegex = /^[0-9]+$/;
         const maxLongitudDNI = 8; // Máximo de 8 dígitos para el DNI
         const minLongitudDNI = 8; // Mínimo de 8 dígitos para el DNI
-
-
-        // Verificar DNI repetido
-        const dniExistentes = document.querySelectorAll('#rowsCliente td:nth-child(3)');
-        const dniRepetido = [...dniExistentes].some(td => td.textContent.trim() === dni.trim());
 
         if (dniRepetido ) {
             Swal.fire({
@@ -159,6 +164,12 @@ async function enviarDatosApi() {
                 showConfirmButton: false,
                 timer: 1500
             });
+
+            btnGrabar.disabled = true;
+
+            const modal = document.getElementById('modalFormulario');
+            const modalInstance = bootstrap.Modal.getInstance(modal);
+            modalInstance.hide(); // Cerrar el modal
         } else {
             console.error('Error al enviar los datos a la API:', response.statusText);
         }
@@ -166,11 +177,7 @@ async function enviarDatosApi() {
         console.error('Error al enviar los datos a la API:', error);
     }
 }
-//MODIFIQUE EL BUTON PARA QUE PRIMERO VALIDE LOS CAMPUS
-function validarCompus() {
-    enviarDatosApi(); // Llamar a enviarDatosApi 
-    
-}
+
 
 async function eliminarDato(id) {
     try {

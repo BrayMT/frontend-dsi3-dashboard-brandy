@@ -1,27 +1,47 @@
 .error-message {
-    background-color: #f8d7da; /* Color de fondo rojo claro */
-    color: #5d1b22; /* Color de texto rojo oscuro */
-    border: 1px solid #f5c6cb; /* Borde rojo claro */
-    padding: 10px; /* Espaciado interno */
-    max-width: 300px; /* Ancho máximo */
-    font-size: 12px; /* Tamaño de fuente */
-    width: auto; /* Ancho automático (ajustado según el contenido) */
-    height: auto; /* Altura automática (ajustada según el contenido) */
-}
-
-.Fondo {
-    background-image: url('../img/Restaurante-15.jpg'); 
-    background-repeat: no-repeat;
-    background-size: cover; /* O usa 'contain' según sea necesario */
-    background-position: center; /* Alinea la imagen en el centro */
-}
-
-.texto{
-    font-size: 36px; /* Cambia este valor al tamaño que desees */
-    color: rgb(219, 224, 239);
+    background-color: #f8d7da; 
+    color: #5d1b22; 
+    border: 1px solid #f5c6cb; 
+    padding: 10px; 
+    max-width: 300px;
+    font-size: 12px;
+    width: auto; 
+    height: auto;
 }
 
 .custom-control-label{
-    font-size: 14px; /* Cambia este valor al tamaño que desees */
+    font-size: 14px; 
     color: rgb(219, 224, 239)   ;
 }
+
+#content{
+    background-image: url('../img/FondoCabezal.png');
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: center; 
+}
+
+.bordes{
+    background-image: url('../img/004A87.png');
+    height: 70px; 
+    font-size: 16px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    color: white; 
+    font-size: 16px; 
+}
+
+.accordion .nav-link:hover {
+    background-color: #1b1d5b;  
+}
+.imagen {
+    background-image: url('../img/004A87.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+
+

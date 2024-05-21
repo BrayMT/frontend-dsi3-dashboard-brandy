@@ -52,7 +52,7 @@
     <div id="wrapper">
       <!-- Sidebar -->
       <ul
-        class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion"
+        class="navbar-nav imagen sidebar sidebar-dark accordion"
         id="accordionSidebar"
       >
         <!-- Sidebar - Brand -->
@@ -240,8 +240,11 @@
         <div id="content">
           <!-- Topbar -->
           <nav
-            class="navbar navbar-expand navbar-light bg-gradient-secondary topbar mb-4 static-top shadow"
+            class="navbar navbar-expand navbar-light imagen topbar mb-4 static-top shadow"
           >
+            <div>
+            <button id="fijo" type="button" data-bs-dismiss="modal"></button>                                          
+            </div>
             <!-- Sidebar Toggle (Topbar) -->
             <button
               id="sidebarToggleTop"
@@ -320,6 +323,9 @@
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
+                 <button class="switch" id="switch"></button>
+                 <span><i class="fas fa-sun"></i></span>
+                 <span><i class="fas fa-moon"></i> </span>
                   <i class="fas fa-bell fa-fw"></i>
                   <!-- Counter - Alerts -->
                   <span class="badge badge-danger badge-counter">3+</span>
@@ -547,13 +553,13 @@
           </div>
           <!-- /.container-fluid -->
         </div>
-        <!-- End of Main Content -->
+        
 
         <!-- Footer -->
-        <footer class="sticky-footer bg-white">
+        <footer class="bordes">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright &copy; Your Website 2020</span>
+              <span>Copyright &copy; Brandy M.T 2024</span>
             </div>
           </div>
         </footer>
@@ -625,5 +631,6 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+    <link rel="stylesheet" href="css/button.css">
   </body>
 </html>
