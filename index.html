@@ -50,6 +50,7 @@
   <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
+      
       <!-- Sidebar -->
       <ul
         class="navbar-nav imagen sidebar sidebar-dark accordion"
@@ -68,12 +69,12 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0" />
-
+           
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
           <a class="nav-link" href="index.html">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a
+            <span>Pagina web</span></a
           >
         </li>
 
@@ -81,7 +82,7 @@
         <hr class="sidebar-divider" />
 
         <!-- Heading -->
-        <div class="sidebar-heading">Interfaces</div>
+        <div class="sidebar-heading">Interfaz</div>
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
@@ -171,7 +172,7 @@
         <hr class="sidebar-divider" />
 
         <!-- Heading -->
-        <div class="sidebar-heading">Addons</div>
+        <div class="sidebar-heading">COMPLEMENTOS</div>
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item active">
@@ -193,13 +194,14 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Pantallas de inicio de sesión:</h6>
+              <h6 class="collapse-header">Inicio de sesión:</h6>
               <a class="collapse-item" href="login.html">Login</a>
               <a class="collapse-item" href="register.html">Registro</a>
                 
               <a class="collapse-item" href="forgot-password.html"
                 >Forgot Password</a
               >
+              
               <!-- <div class="collapse-divider"></div>
               <h6 class="collapse-header">Other Pages:</h6>
               <a class="collapse-item" href="404.html">404 Page</a>
@@ -231,7 +233,9 @@
         <div class="text-center d-none d-md-inline">
           <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
+        
       </ul>
+      
       <!-- End of Sidebar -->
 
       <!-- Content Wrapper -->
@@ -242,9 +246,6 @@
           <nav
             class="navbar navbar-expand navbar-light imagen topbar mb-4 static-top shadow"
           >
-            <div>
-            <button id="fijo" type="button" data-bs-dismiss="modal"></button>                                          
-            </div>
             <!-- Sidebar Toggle (Topbar) -->
             <button
               id="sidebarToggleTop"
@@ -257,6 +258,7 @@
             <form
               class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
             >
+            
               <div class="input-group">
                 <input
                   type="text"
@@ -275,6 +277,12 @@
 
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
+              <div>
+                <button class="switch" id="switch">
+                  <span><i class="fas fa-sun"></i></span>
+                  <span><i class="fas fa-moon"></i></span>
+                </button>
+              </div>
               <!-- Nav Item - Search Dropdown (Visible Only XS) -->
               <li class="nav-item dropdown no-arrow d-sm-none">
                 <a
@@ -312,6 +320,8 @@
                 </div>
               </li>
 
+              <!-- cambio de fuente dark -->
+
               <!-- Nav Item - Alerts -->
               <li class="nav-item dropdown no-arrow mx-1">
                 <a
@@ -323,9 +333,7 @@
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                 <button class="switch" id="switch"></button>
-                 <span><i class="fas fa-sun"></i></span>
-                 <span><i class="fas fa-moon"></i> </span>
+
                   <i class="fas fa-bell fa-fw"></i>
                   <!-- Counter - Alerts -->
                   <span class="badge badge-danger badge-counter">3+</span>
@@ -493,7 +501,7 @@
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <span class="mr-2 d-none d-lg-inline text-gray-600 small"
+                  <span class="mr-2 d-none d-lg-inline text-gray-100 small"
                     >Douglas McGee</span
                   >
                   <img
@@ -536,6 +544,8 @@
           </nav>
           <!-- End of Topbar -->
 
+          
+
           <!-- Inicio del contenido de la pagina -->
           <div class="container-fluid" id="contenido">
             <!-- Page Heading -->
@@ -550,6 +560,10 @@
               Empieza a explorar y descubre todas las características
               emocionantes que tenemos para ti.
             </p>
+
+            <div>
+              <button> </button>
+            </div>
           </div>
           <!-- /.container-fluid -->
         </div>
@@ -631,6 +645,7 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+    <script src="js/button.js"></script>
     <link rel="stylesheet" href="css/button.css">
   </body>
 </html>

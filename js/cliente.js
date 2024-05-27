@@ -56,7 +56,7 @@ async function cargarDatosDelAPI() {
         });
         tablaBody.innerHTML = rows; 
 
-        inicializarDataTableAsync();
+        // inicializarDataTable(); 
           // Inicializar DataTable después de cargar los datos
         } catch (error) {
           console.error('Error al cargar datos:', error);

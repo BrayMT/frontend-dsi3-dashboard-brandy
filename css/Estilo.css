@@ -1,19 +1,25 @@
-.error-message {
-    background-color: #f8d7da; 
-    color: #5d1b22; 
-    border: 1px solid #f5c6cb; 
-    padding: 10px; 
-    max-width: 300px;
-    font-size: 12px;
-    width: auto; 
-    height: auto;
-}
+/* ===================================================================== */
 
+                         /* EXPLICACION SIMPLE */
+ /* 1 --> */ /* -------------------- */ /* esto significa que el codigo 
+                de adentro va solo a un button o en otras etiketas */
+
+/* ===================================================================== */
+
+
+
+/* -------------------- */
+
+/* ESTO ES PARA MODIFICAR EL TITULO DEL LOGIN login.html*/
 .custom-control-label{
     font-size: 14px; 
     color: rgb(219, 224, 239)   ;
 }
+/* THE END */
 
+/* -------------------- */
+
+/* CAMBIAR EL DISEÑO DE LA INTERFAS DEL index.html*/
 #content{
     background-image: url('../img/FondoCabezal.png');
     background-repeat: no-repeat;
@@ -32,15 +38,92 @@
     font-size: 16px; 
 }
 
-.accordion .nav-link:hover {
-    background-color: #1b1d5b;  
-}
 .imagen {
     background-image: url('../img/004A87.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
+/* THE END */
+
+/* -------------------- */
+
+/* CAMBIAR EL DISEÑO DE LA INTERFAS DEL index.html Y TAMBIEN ESO VA RELACIONADO CON EL BUTTON DE CRALO Y OSCURO*/
+body.dark #content {
+    background-image: url('../img/FondoDark.png');
+}
+
+body.dark .bordes {
+    background: #262f4a; 
+}
+
+body.dark .imagen {
+    background: #262f4a; 
+}
+
+.dark h1{
+    color: white;
+}
+.dark h4{
+    color: white;
+}
+.dark p{
+    color: white;
+}
+/* THE END */
+
+/* -------------------- */
+
+/* CSS DEL BUTTON CLARO Y OSCURO index.html*/
+.switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 25px;
+    background-color: rgb(74, 71, 71);
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 25px; /* Ajusta este valor según sea necesario */
+    left: 50%; /* Centra el botón horizontalmente */
+    transform: translateX(500%); /* Ajusta el centrado */
+}
+  
+.switch::after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 25px;
+    position: absolute;
+    background: #F1F1F1;
+    top: 0;
+    left: 0;
+    border-radius: 100px;
+    transition: .3s ease all;
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+  
+.switch.active {
+    background: orange;
+}
+  
+.switch.active::after {
+    left: 30px; /* Cambia a la posición derecha */
+}
+  
+.switch span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 16px; /* Ajusta el tamaño del icono según sea necesario */
+    z-index: 1; /* Asegura que el icono esté por encima del pseudo-elemento */
+}
+  
+
+/* THE END */
 
 
 

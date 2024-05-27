@@ -34,7 +34,7 @@ async function cargarDatosDelAPI() {
                 <tr>
                     <td>${dato.id}</td>
                     <td>${dato.nombre_pedido}</td>
-                    <td>${dato.cantidad.toFixed()}</td>
+                    <td>${dato.cantidad}</td>
                     <td>${dato.fecha_pedido}</td>
                     <td>
                         <button class='btn btn-success ms-2' onclick='buscarParaEditar(${dato.id})' data-bs-toggle='modal' data-bs-target='#modalFormulario'>Editar</button>
@@ -55,7 +55,7 @@ async function buscarParaEditar(id){
         const dato = await response.json();
         document.getElementById('txtId').value = dato.id;
         document.getElementById('txtNombre_pedido').value = dato.nombre_pedido;
-        document.getElementById('txtCantidad').value = dato.cantidad.toFixed();
+        document.getElementById('txtCantidad').value = dato.cantidad;
         document.getElementById('txtFecha_pedido').value = dato.fecha_pedido;
 
     } catch (error) {
@@ -84,7 +84,7 @@ async function enviarDatosApi() {
         const data = {
             "nombre_pedido": nombre_pedido,
             "cantidad": cantidad,
-            "fecha_pedido": fecha_pedido
+            "fecha_pedido": fecha_pedido,
         };
 
         if (!isNaN(id)) {

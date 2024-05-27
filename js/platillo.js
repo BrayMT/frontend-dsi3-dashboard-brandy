@@ -39,7 +39,7 @@ async function cargarDatosDelAPI() {
                     <td>${dato.nombre_platillo}</td>
                     <td>${dato.descripcion}</td>
                     <td>${dato.categoria}</td>
-                    <td>${dato.precio.toFixed(1)}</td>
+                    <td>${dato.precio}</td>
                     <td>
                         <button class='btn btn-success ms-2' onclick='buscarParaEditar(${dato.id})' data-bs-toggle='modal' data-bs-target='#modalFormulario'>Editar</button>
                         <button class='btn btn-danger' onclick='eliminarDato(${dato.id})'>Eliminar</button>
@@ -61,7 +61,7 @@ async function buscarParaEditar(id){
         document.getElementById('txtNombre_platillo').value = dato.nombre_platillo;
         document.getElementById('txtDescripcion').value = dato.descripcion;
         document.getElementById('txtCategoria').value = dato.categoria;
-        document.getElementById('txtPrecio').value = dato.precio.toFixed(1);
+        document.getElementById('txtPrecio').value = dato.precio;
        
 
 
