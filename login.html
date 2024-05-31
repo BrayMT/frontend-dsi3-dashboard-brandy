@@ -43,15 +43,16 @@
                                     <div class="texto-center">  
                                         <h1 class="texto">¡𝕭𝖎𝖊𝖓𝖛𝖊𝖓𝖎𝖉𝖔 𝖆𝖑𝖆 𝖇𝖗𝖔𝖆𝖘𝖙𝖊𝖗𝖎𝖆 𝖑𝖆 𝖒𝖆𝖒𝖎𝖙𝖆!</h1>
                                     </div>
-                                    <form class="user">
+
+                                    <form id="loginForm" class="user">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
+                                            <input type="text" name="usuario" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Introducir la dirección de correo electrónico...">
+                                                placeholder="Introducir la dirección de correo electrónico..." required>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="contraseña">
+                                                id="exampleInputPassword" placeholder="Contraseña" name="password" required>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -63,11 +64,11 @@
 
                                             </div>
                                         </div>
-                                        <a href="index.html" class="btn btn-primary bg-gradient-warning btn-user btn-block">
-                                            Login
+                                        <button type="submit" class="btn btn-google bg-gradient-warning btn-user btn-block">Login</button>
+
                                         </a>
                                         <hr>
-                                        <a href="register.html" class="btn btn-google btn-user btn-block">
+                                        <a href="index.html" class="btn btn-google btn-user btn-block">
                                             ¡Crea una cuenta!
                                         </a>
                                         <a href="forgot-password.html" class="btn btn-facebook bg-gradient-warning btn-user  btn-block">
@@ -75,7 +76,7 @@
                                         </a>
                                         <ul>
                                             <li>
-                                              <a class="facebook" href="https://web.facebook.com/lamamitadeliverycomida?locale=es_LA">
+                                              <a class="facebook" href="https://web.facebook.com/lamamitadeliverycomida?locale=es_LA" target="_blank">
                                                 <span></span>
                                                 <span></span>
                                                 <span></span>
@@ -83,7 +84,7 @@
                                                 <i class=" fa-brands fa-facebook" aria-hidden="true"></i>
                                               </a>
                                             </li>
-                                            <li>
+                                            <!-- <li>
                                               <a class="twitter" href="">
                                                 <span></span>
                                                 <span></span>
@@ -91,9 +92,9 @@
                                                 <span></span>
                                                 <i class="fa-brands fa-twitter" aria-hidden="true"></i>
                                               </a>
-                                            </li>
+                                            </li> -->
                                             <li>
-                                              <a class=" instagram" href="https://www.instagram.com/pizzeriabroasteria_la_mamita/">
+                                              <a class=" instagram" href="https://www.instagram.com/pizzeriabroasteria_la_mamita/" target="_blank">
                                                 <span></span>
                                                 <span></span>
                                                 <span></span>
@@ -120,6 +121,7 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
     <link rel="stylesheet" href="css/login.css">
+    <script src="js/login.js"></script>
 
 </body>
 

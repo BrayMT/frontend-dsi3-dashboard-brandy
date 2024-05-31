@@ -40,19 +40,19 @@ body {
     
   }
   ul {
-    left:20%;
-    transform:translate(-50%,-50%);
-    margin:0;
-    padding:0;
-    display:flex;
+    left: 29%; /* Cambia el valor según tus necesidades */
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
+    display: flex;
     margin-top: 50px;
     position: relative;
     top: 20px; /* Ajusta el valor según tus necesidades */
-    width: 30px;      /* Ajusta el ancho */
-    height: 30px;     /* Ajusta la altura */
-    margin: 5px;      /* Ajusta los márgenes */
+    width: 30px; /* Ajusta el ancho */
+    height: 30px; /* Ajusta la altura */
+    margin: 5px; /* Ajusta los márgenes */
     transform: scale(0.5); /* Escala el elemento */
-  }
+}
   ul li {
     list-style:none;
   }

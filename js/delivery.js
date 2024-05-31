@@ -16,8 +16,8 @@ function validarCampos() {
     };
 
     if (hora.trim() !== "" && direccion.trim() !== "" && estado_pedido.trim() !== "" && tiempo_entrega.trim() &&
-        !Caracteres_permitidos(hora) && !Caracteres_permitidos(direccion) &&
-        !Caracteres_permitidos(estado_pedido) && !Caracteres_permitidos(tiempo_entrega)) {
+        !Caracteres_permitidos(direccion) &&
+        !Caracteres_permitidos(estado_pedido)) {
         btnGrabar.disabled = false;
     } else {
         btnGrabar.disabled = true;
@@ -94,10 +94,6 @@ function mostrarMensajeError(mensaje, campoId) {
     }, 3000);
 }
 
-function contieneNumerosOCaracteresNoPermitidos(valor) {
-    const regex = /^[a-zA-Z\s]+$/; // Expresión regular para permitir solo letras y espacios
-    return !regex.test(valor.trim());
-}
 //AQUI TERMINA
 
 async function enviarDatosApi() {
